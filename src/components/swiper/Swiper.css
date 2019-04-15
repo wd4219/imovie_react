@@ -1,0 +1,39 @@
+.swiper-container{
+  height: 142px;
+  width: 100%;
+  overflow:hidden;
+  margin-top: 48px;
+  position:relative;
+  & .swiper-list-content{
+    position:absolute;
+    display:flex;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: calc(375px * 4);
+    transform: translateX(-375px);
+  }
+  & img{
+    width: 375px;
+    position:absolute;
+    box-sizing:border-box;
+  }
+  & .dots {
+    height: 10px;
+    position:absolute;
+    bottom: 10px;
+    font-size: 0;
+    text-align:center;
+    width:100%;
+    & .dot{
+      height:10px;
+      width:10px;
+      border-radius: 50%;
+      background: #fff;
+      display:inline-block;
+      margin: 0 5px;
+    }
+    & .active{
+      background:red;
+    }
+  }
+}

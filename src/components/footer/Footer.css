@@ -1,0 +1,27 @@
+.footer-list{
+  height: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  position:fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  & .footer-list-item{
+    flex: 1;
+    font-size: 12px;
+  }
+  & img{
+    width: 16px;
+    height: 16px;
+  }
+  & a{
+    text-decoration:none;
+    &.active{
+      color: red;
+    }
+  }
+}
