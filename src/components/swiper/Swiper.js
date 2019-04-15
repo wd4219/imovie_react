@@ -56,26 +56,33 @@ export default class Swiper extends Component{
   _touchEnd(e) {
     let transform = getComputedStyle(this.sliderRef.current).getPropertyValue('transform');
     let translateX = Number(transform.slice(7, transform.length - 1).split(', ')[4]);
-    let percent = ((Math.abs(translateX) > 375 ? Math.abs(translateX) : (375 - Math.abs(translateX)))  % 375) / 375;
-    console.log(translateX, this.translateX);
-    console.log(percent);
-    if(percent > 0.3) {
-      if(translateX > this.translateX) {
-        console.log('向右切换');
+    let percent = (Math.abs(translateX) % 375 ) / 375;
+    if(translateX > this.translateX) {
+      console.log('向右切换');
+      if(this.translateX === 0) {
+        percent = (375 - Math.abs(translateX)) / 375
+      } else {
+        percent = (Math.abs(translateX) % 375 ) / 375;
+      }
+      if(percent < 0.7) {
         this.sliderRef.current.style.transform = `translateX(${this.translateX + 375}px)`;
         this.sliderRef.current.style.transition = `transform ${this.option.speed}ms`;
         this.direction = 'right';
       } else {
-        console.log('向左切换');
+        this.sliderRef.current.style.transform = `translateX(${this.translateX}px)`;
+        this.sliderRef.current.style.transition = `transform ${this.option.speed}ms`;
+      }
+    } else {
+      console.log('向左切换');
+      if(percent > 0.3) {
         this.sliderRef.current.style.transform = `translateX(${this.translateX - 375}px)`;
         this.sliderRef.current.style.transition = `transform ${this.option.speed}ms`;
         this.direction = 'left';
+      } else {
+        this.sliderRef.current.style.transform = `translateX(${this.translateX}px)`;
+        this.sliderRef.current.style.transition = `transform ${this.option.speed}ms`;
       }
-    } else {
-      this.sliderRef.current.style.transform = `translateX(${this.translateX}px)`;
-      this.sliderRef.current.style.transition = `transform ${this.option.speed}ms`;
     }
-    
   }
 
   _onTransitionEnd() {
