@@ -1,0 +1,33 @@
+.slider-title{
+  height: 40px;
+  line-height: 40px;
+  text-align:left;
+  padding: 0 15px;
+  box-sizing:border-box;
+  display:flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.slider-list-content{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  &::-webkit-scrollbar{
+    display:none;
+  }
+  & .slider-list-item{
+    flex: 0 0 160px;
+    width: 160px;
+    height: 200px;
+    padding-left: 10px;
+    box-sizing:border-box;
+    overflow:hidden;
+    &:last-child{
+      padding-right: 10px;
+    }
+    & img{
+      height: 100%;
+      border-radius: 8px;
+    }
+  }
+}

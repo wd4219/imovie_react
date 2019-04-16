@@ -9,13 +9,15 @@
     display:flex;
     flex-wrap: nowrap;
     height: 100%;
-    width: calc(375px * 4);
-    transform: translateX(-375px);
   }
-  & img{
-    width: 375px;
+  & .swiper-list-item{
+    height: 100%;
     position:absolute;
     box-sizing:border-box;
+  }
+  & img{
+    height: 100%;
+    width: 100%;
   }
   & .dots {
     height: 10px;

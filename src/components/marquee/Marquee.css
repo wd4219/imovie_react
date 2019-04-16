@@ -1,0 +1,13 @@
+.marquee-container{
+  height:100%;
+  width: 100%;
+  overflow: hidden;
+  position:relative;
+  & .marquee-list-content{
+    position:absolute;
+    transform: translate(0,0);
+  }
+  & .marquee-list-item{
+    position: absolute;
+  }
+}
