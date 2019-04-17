@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Footer from './components/footer/Footer.js';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './container/home/Home.js';
+import Home from './container/Home/Home.js';
 import Movie from './container/movie/Movie.js';
 import Tv from './container/tv/Tv.js';
 import My from './container/my/My.js';

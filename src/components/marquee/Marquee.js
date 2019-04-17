@@ -19,7 +19,7 @@ export default class Marquee extends Component {
       this.setState({height: this.marqueeContainerRef.current.clientHeight});
       this.setState({width: this.marqueeContainerRef.current.clientWidth});
     }
-    if(this.props.children && this.props.children.length > 1) {
+    if(Array.isArray(this.props.children)) {
       this._marquee();
     }
   }
@@ -85,7 +85,7 @@ export default class Marquee extends Component {
       <div className="marquee-container" ref={this.marqueeContainerRef}>
         <div className="marquee-list-content" style={contentStyle} ref={this.marqueeRef} onTransitionEnd={this._onTransitionEnd.bind(this)}>
           {
-            this.props.children.map((item,index)=>{
+            Array.isArray(this.props.children) ? (this.props.children.map((item,index)=>{
               if(this.props.type === 'vertical') {
                 itemStyle = {
                   height: this.state.height + 'px',
@@ -104,7 +104,7 @@ export default class Marquee extends Component {
                   {item}
                 </div>
               );
-            })
+            })) : (<div className="marquee-list-item" style={{width:'100%',height: '100%'}}>{this.props.children}</div>)
           }
         </div>        
       </div>

@@ -1,0 +1,34 @@
+:root{
+  --ligntColor: #ff4a4a;
+  --fontColor: #26231f;
+  --fontBlue: #1f83ff;
+  --greyBackground: #ebebeb;
+}
+
+
+.header{
+  height: 44px;
+  font-size: 16px;
+  padding: 0 15px;
+  box-sizing:border-box;
+  line-height: 44px;
+  align-items:center;
+  justify-content: space-between;
+  display:flex;
+  position:fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  & .header__logo{
+    color: var(--ligntColor);
+    flex: 0 0 100px;
+    margin-right: 20px;
+  }
+  & .header__search{
+    flex: 1;
+    height: 30px;
+    background: var(--greyBackground);
+    border-radius: 15px;
+  }
+}
