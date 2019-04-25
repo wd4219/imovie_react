@@ -5,6 +5,9 @@ export default class Tab extends Component {
   constructor(props) {
     super(props);
     this.tabRef = React.createRef();
+    this.state = {
+      index: 1,
+    }
   }
 
   componentDidMount() {
@@ -28,10 +31,12 @@ export default class Tab extends Component {
     let distance = Math.abs(moveX - this.startX);
     let transform = getComputedStyle(this.tabRef.current).getPropertyValue('transform');
     let translateX = Number(transform.slice(7, transform.length - 1).split(', ')[4]);
-    if(translateX > 0) {
+    if(translateX >= 0 && moveX > this.startX) {
       this.tabRef.current.style.transform = `translateX(0)`;
-    } else if(translateX < - 1500) {
+      return;
+    } else if(translateX <= - 1500 && moveX <  this.startX) {
       this.tabRef.current.style.transform = `translateX(-1500px)`;
+      return;
     } else {
       if(Math.abs(moveX - this.startX) > Math.abs(moveY - this.startY)) {
         if(moveX - this.startX > 0) { //判断滑动方向
@@ -53,17 +58,17 @@ export default class Tab extends Component {
       if(translateX > this.translateX) {   //判断切换方向
         console.log('向右切换');
         this.tabRef.current.style.transform = `translateX(${this.translateX + 375}px)`;
-        this.tabRef.current.style.transition = `transform ${3000}ms`;
+        this.tabRef.current.style.transition = `transform ${300}ms`;
         this.direction = 'right';
       } else if(translateX < this.translateX){
         console.log('向左切换');
         this.tabRef.current.style.transform = `translateX(${this.translateX - 375}px)`;
-        this.tabRef.current.style.transition = `transform ${3000}ms`;
+        this.tabRef.current.style.transition = `transform ${300}ms`;
         this.direction = 'left';
       }
     } else {
       this.tabRef.current.style.transform = `translateX(${this.translateX}px)`;
-      this.tabRef.current.style.transition = `transform ${3000}ms`;
+      this.tabRef.current.style.transition = `transform ${300}ms`;
       this.direction = '';
     }
   }
@@ -72,6 +77,18 @@ export default class Tab extends Component {
     this.tabRef.current.style.transition = 'none';
     let transform = getComputedStyle(this.tabRef.current).getPropertyValue('transform');
     this.translateX = Number(transform.slice(7, transform.length - 1).split(', ')[4]);
+    if(this.direction === 'right') {
+      this.setState((prevState)=>{
+        console.log(prevState.index);
+        return {index: prevState.index - 1}
+      });
+    } else if(this.direction === 'left'){
+      this.setState((prevState)=>{
+        console.log(prevState.index);
+        return {index: prevState.index + 1}
+      });
+    }
+    console.log('现在是第' + this.state.index);
   }
 
   render() {
@@ -79,19 +96,19 @@ export default class Tab extends Component {
       <div>
         <div className="tab-nav">
           <div className="tab-nav-list">
-            <div className="tab-nav-item active">
-              tab1
+            <div className={`tab-nav-item ${this.state.index === 1 ?'active':''}`}>
+              {this.state.index}
             </div>
-            <div className="tab-nav-item">
+            <div className={`tab-nav-item ${this.state.index === 2 ?'active':''}`}>
               tab2
             </div>
-            <div className="tab-nav-item">
+            <div className={`tab-nav-item ${this.state.index === 3 ?'active':''}`}>
               tab3
             </div>
-            <div className="tab-nav-item">
+            <div className={`tab-nav-item ${this.state.index === 4 ?'active':''}`}>
               tab4
             </div>
-            <div className="tab-nav-item">
+            <div className={`tab-nav-item ${this.state.index === 5 ?'active':''}`}>
               tab5
             </div>
           </div>
